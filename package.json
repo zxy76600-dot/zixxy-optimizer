@@ -1,0 +1,17 @@
+{
+  "name": "zixxy-optimizer",
+  "version": "1.0.0",
+  "description": "Zixxy's Ultimate Phone Optimization Panel with Multiuser System and Esports Mode",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Zixxy",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "socket.io": "^4.7.2",
+    "os-utils": "^0.0.15"
+  }
+}
