@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zixxy Optimizer - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00ffff;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            background: #00ffff;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #ff00ff;
+            color: white;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zixxy's Ultimate Phone Optimizer</h1>
+    <div class="login-box">
+        <input type="text" id="id" placeholder="Enter ID"><br>
+        <input type="password" id="password" placeholder="Enter Password"><br>
+        <button onclick="login()">Login</button>
+        <div class="error" id="error"></div>
+    </div>
+
+    <!-- Sounds -->
+    <audio id="welcome-sound" src="welcome.mp3"></audio>
+    <audio id="error-sound" src="error.mp3"></audio>
+
+    <script>
+        function login() {
+            const id = document.getElementById('id').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('welcome-sound').play();
+                    setTimeout(() => {
+                        window.location.href = '/index.html';
+                    }, 1500);
+                } else {
+                    document.getElementById('error-sound').play();
+                    document.getElementById('error').innerText = "Sorry, ID or password is wrong!";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
