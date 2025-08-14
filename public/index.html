@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zixxy – Main Panel</title>
+<style>
+  body{font-family:Arial, sans-serif; background:#0a0a0a; color:#fff; text-align:center; padding:24px}
+  h1{color:#0ff; text-shadow:0 0 14px #0ff}
+  .row{margin-top:20px}
+  a.btn{display:inline-block; margin:10px; padding:12px 18px; background:#0ff; color:#000; border-radius:12px; text-decoration:none; font-weight:700}
+  a.btn:hover{box-shadow:0 0 14px #f0f; transform:translateY(-1px)}
+  #me{opacity:.8; margin-top:10px}
+</style>
+</head><body>
+  <h1>Zixxy’s Ultimate Phone Optimization</h1>
+  <div id="me">Loading user...</div>
+
+  <div class="row">
+    <a class="btn" href="/device_info.html">📱 Device Info</a>
+    <a class="btn" href="/nonroot_panel.html">🔒 Non-Root</a>
+    <a class="btn" href="/root_panel.html">🔓 Root</a>
+    <a class="btn" href="/special_features.html">✨ Special</a>
+    <a class="btn" href="/esports_mode.html">🎮 Esports Mode</a>
+  </div>
+
+  <div class="row">
+    <a class="btn" href="#" onclick="logout()">🚪 Logout</a>
+  </div>
+
+<script>
+async function who(){
+  const r=await fetch('/whoami'); const j=await r.json();
+  if(!j.user){ location.href='/'; return; }
+  document.getElementById('me').textContent = `Logged in as: ${j.user.id} | Roles: ${j.user.roles.join(', ')}`;
+}
+async function logout(){
+  await fetch('/logout',{method:'POST'}); location.href='/';
+}
+who();
+</script>
+</body></html>
