@@ -1,4 +1,3 @@
-
 // server.js
 const express = require('express');
 const path = require('path');
@@ -60,3 +59,4 @@ wss.on('connection', (ws) => {
         clearInterval(interval);
     });
 });
+
